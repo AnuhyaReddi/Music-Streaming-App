@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ song.song_name }} Details</title>
+</head>
+<body>
+    <h1>{{ song.song_name }} Details</h1>
+    <p><strong>Artist:</strong> {{ song.artist_name }}</p>
+    <p><strong>Duration:</strong> {{ song.duration }}</p>
+    <p><strong>Language:</strong> {{ song.language }}</p>
+
+    <a href="{{ url_for('creator_profile',username=username) }}">Back to Creator Profile</a>
+</body>
+</html>

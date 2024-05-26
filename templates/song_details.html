@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Song Details</title>
+</head>
+<body>
+    <h1>Song Details</h1>
+    
+    <p><strong>Song Name:</strong> {{ song.song_name }}</p>
+    <p><strong>Artist Name:</strong> {{ song.artist_name }}</p>
+    <p><strong>Duration:</strong> {{ song.duration }}</p>
+    
+    {% if song.lyrics %}
+        <p><strong>Lyrics:</strong> {{ song.lyrics }}</p>
+    {% endif %}
+
+    <p><strong>Language:</strong> {{ song.language }}</p>
+    <p><strong>Creator Username:</strong> {{ song.creator_username }}</p>
+
+    <a href="{{ url_for('user_profile', username=username) }}">Back to All Songs</a>
+
+</body>
+</html>

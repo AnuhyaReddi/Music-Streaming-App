@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Album Details</title>
+</head>
+<body>
+    <h1>Album Details</h1>
+    <p>Album Name: {{ album.album_name }}</p>
+    <p>Album Genre: {{ album.album_genre }}</p>
+    <p>Artist Name: {{ album.artist_name }}</p>
+
+    <h2>Songs</h2>
+    <ul>
+        {% for song in album.songs %}
+            <li>
+                <a href="{{ url_for('song_details', song_id=song.id) }}">{{ song.song_name }}</a>
+                by {{ song.artist_name }}
+            </li>
+        {% endfor %}
+    </ul>
+
+    <a href="{{ url_for('user_profile', username=album.creator_username) }}">Back to User Profile</a>
+</body>
+</html>
