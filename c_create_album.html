@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="{{ url_for('creator_profile',username=username) }}">Creator Profile</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+    
+                <!-- Navbar items -->
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('c_add_song') }}">Add Songs</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('c_create_album') }}">Create Album</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="container mt-5">
+            <h2>Create Album</h2>
+
+            <h1>Welcome Creator, {{ creator.username }}</h1>
+        
+            <!-- Add Album Form -->
+            <form method="post" action="{{ url_for('c_create_album') }}">
+                <!-- Album Name -->
+                <div class="form-group">
+                    <label for="albumName">Album Name:</label>
+                    <input type="text" class="form-control" id="albumName" name="album_name" required>
+                </div>
+        
+                <!-- Album Genre -->
+                <div class="form-group">
+                    <label for="albumGenre">Album Genre:</label>
+                    <input type="text" class="form-control" id="albumGenre" name="album_genre" required>
+                </div>
+        
+                <!-- Artist Name -->
+                <div class="form-group">
+                    <label for="artistName">Artist:</label>
+                    <input type="text" class="form-control" id="artistName" name="artist_name" required>
+                </div>
+        
+                <!-- Select Songs (multiple) -->
+                <div class="form-group">
+                    <label for="songs">Select Songs for the Album:</label>
+                    {% for song in songs %}
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="selected_songs" value="{{ song.id }}">
+                            <label class="form-check-label" for="song_{{ song.id }}">{{ song.song_name }}</label>
+                        </div>
+                    {% endfor %}
+                </div>
+<!-- 
+                <h2>Created Songs:</h2>
+                <ul>
+                {% for song in songs %}
+                    <li>{{ song.song_name }} - {{ song.artist_name }}</li>
+                {% endfor %}
+                </ul> -->
+
+
+        
+                <!-- Submit Button -->
+                <button type="submit" class="btn btn-primary">Create Album</button>
+            </form>
+        </div>
+        
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.9/dist/umd/popper.min.js" integrity="sha384-OJ3+qF2zVlX91YBHg1jU8p1BiVE6OWZViA/h6XZsFK2J8hVfFHLW1su7DeFLJ70" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+</body>
+</html>
